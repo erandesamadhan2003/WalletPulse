@@ -1,0 +1,17 @@
+{
+    "name": "walletpulse-desktop",
+    "version": "1.0.0",
+    "description": "WalletPulse Desktop Application",
+    "type": "module",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ./main.js",
+        "build": "electron-builder"
+    },
+    "dependencies": {
+        "electron": "^35.1.0"
+    },
+    "devDependencies": {
+        "electron-builder": "^24.6.0"
+    }
+}
