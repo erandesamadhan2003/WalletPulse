@@ -7,7 +7,6 @@ import { Expense } from './pages/dashboard/Expense.jsx'
 import { Income } from './pages/dashboard/Income.jsx' 
 
 const Root = () => {
-  //check if token exists in localstorage
   const isAuthenticated = !!localStorage.getItem("token");
 
   return isAuthenticated ? (

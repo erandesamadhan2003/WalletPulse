@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FaRegEyeSlash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 
-export const Input = ({ value, onChange, placeholder, label, type }) => {
+export const Input = ({ value, onChange, placeholder, label, type, ref,className }) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const toggleShowPassword = () => {
@@ -13,9 +13,10 @@ export const Input = ({ value, onChange, placeholder, label, type }) => {
             <label className=''>{label}</label>
             <div className='input-box'>
                 <input
+                    ref={ref}
                     type={type == 'password' ? showPassword ? 'text' : 'password' : type}
                     placeholder={placeholder}
-                    className='w-full bg-transparent outline-none'
+                    className={`w-full bg-transparent outline-none ${className}`}
                     value={value}
                     onChange={(e) => onChange(e)}
                 />
