@@ -10,7 +10,7 @@ authRoutes.post("/register", registerUser);
 authRoutes.post("/login", loginUser);
 authRoutes.get("/getuser", isUserPresent, getUserInfo);
 
-Router.post('/upload-image', upload.single("image"), (req,res) => {
+authRoutes.post('/upload-image', upload.single("image"), (req,res) => {
     if(!req.file) {
         return res.status(400).json({
             success: false,
