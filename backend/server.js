@@ -26,6 +26,7 @@ app.use(express.json());
 // Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/income', incomeRoutes);
+app.use('/api/v1/expense', incomeRoutes);
 
 // Static folder for uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
