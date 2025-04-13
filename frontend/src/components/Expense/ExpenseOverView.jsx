@@ -1,38 +1,37 @@
 import { useEffect, useState } from "react"
-import { prepareIncomeBarChartData } from "../../utils/helper";
+import { prepareExpenseLineCharData } from "../../utils/helper";
 import { LuPlus } from "react-icons/lu";
-import { CustomBarChart } from "../Charts/CustomBarChart";
+import { CustomLineChart } from "../Charts/CustomLineChart";
 
-export const IncomeOverview = ({ transactions, onAddIncome }) => {
-    const [charData, setChatData] = useState([]);
+export const ExpenseOverView = ({ transactions, onExpenseIncome }) => {
+    const [chartData, setChartData] = useState([]);
     useEffect(() => {
-        const result = prepareIncomeBarChartData(transactions.income);
-        setChatData(result);
+        const result = prepareExpenseLineCharData(transactions.expense);
+        setChartData(result);
     }, [transactions])
 
-    
     return (
         <div className="card">
             <div className="flex items-center justify-between">
                 <div className="">
                     <h5 className="text-lg">
-                        Income Overview
+                        ExpenseOverview
                     </h5>
                     <p className="text-xs text-gray-400 mt-0.5">
-                        Track your earnings over time and analyze your income trends
+                        Track your spending over time and gain insights your money goes
                     </p>
                 </div>
 
                 <button className="add-btn"
-                    onClick={onAddIncome}
+                    onClick={onExpenseIncome}
                 >
-                    <LuPlus className="" /> Add Income
+                    <LuPlus className="" /> Add Expense
                 </button>
             </div>
 
             <div className="mt-10">
-                <CustomBarChart data={charData}/>
+                <CustomLineChart data={chartData} />
             </div>
         </div>
     )
-} 
+}
