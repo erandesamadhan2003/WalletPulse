@@ -1,18 +1,19 @@
 import './App.css'
-import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { Home } from './pages/dashboard/Home.jsx'
 import { Login } from './pages/auth/Login.jsx';
 import { Signup } from './pages/auth/Signup.jsx'
 import { Expense } from './pages/dashboard/Expense.jsx'
-import { Income } from './pages/dashboard/Income.jsx' 
+import { Income } from './pages/dashboard/Income.jsx'
+import { UserProvider } from './context/UserContext.jsx';
 
 const Root = () => {
   const isAuthenticated = !!localStorage.getItem("token");
 
   return isAuthenticated ? (
-    <Navigate to="/dashboard"/>
+    <Navigate to="/dashboard" />
   ) : (
-    <Navigate to="/login"/>
+    <Navigate to="/login" />
   )
 }
 
@@ -34,23 +35,22 @@ const router = createBrowserRouter([
     element: <Signup />
   },
   {
-    path:'/expense',
+    path: '/expense',
     element: <Expense />
   },
   {
-    path:'/income',
+    path: '/income',
     element: <Income />
   },
 ])
 
 function App() {
-  
-  return (
-    <>
-      <RouterProvider router={router}>
 
-      </RouterProvider>
-    </>
+  return (
+    <UserProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </UserProvider>
+    
   )
 }
 

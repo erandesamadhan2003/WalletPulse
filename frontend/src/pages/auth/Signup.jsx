@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../../components/layouts/AuthLayout';
 import { Input } from '../../components/Inputs/Input';
-import { ProfilePhotoSelector } from '../../components/Inputs/ProfilePhotoSelector';
 import { validateEmail } from '../../utils/helper';
+import { axiosInstance } from '../../utils/axiosInstance';
+import { API_PATHS } from '../../utils/apiPaths';
+import { UserContext } from '../../context/UserContext';
 
 export const Signup = () => {
-  const [profilePic, setProfilePic] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  const { updateUser } = useContext(UserContext)
+
   // handle singup form submit
   const handleSignUp = async (e) => {
     e.preventDefault();
-    const profileImgageUrl = "";
 
     if(!fullName) {
       setError('Please Enter your name');
@@ -35,7 +37,33 @@ export const Signup = () => {
 
     setError("");
 
+    if(!fullName || !email || !password) {
+      setError('All field are required');
+      return;
+    }
     // Sign up API call
+    try {
+      // upload image if present
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        fullname: fullName,
+        email,
+        password,
+      })
+  
+      const {token, user} = response.data;
+  
+      if(token) {
+        localStorage.setItem("token", token);
+        updateUser(user);
+        navigate('/dashboard');
+      }      
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong. Please try again");
+      }
+    }
 
   };
   return (
@@ -47,7 +75,6 @@ export const Signup = () => {
         </p>
 
         <form onSubmit={handleSignUp}>
-          <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <Input
               value={fullName}

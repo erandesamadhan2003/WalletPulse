@@ -5,7 +5,6 @@ const UserSchema = new mongoose.Schema({
     fullname: {type: String, required: true},
     email: {type: String, required: true},
     password: {type: String, required: true},
-    profileImageUrl: {type: String, default: null}
 }, {timestamps: true});
 
 
@@ -17,8 +16,9 @@ UserSchema.pre("save", async function (next) {
 });
 
 // Compae the Passwords
-UserSchema.methods.comparePassword = async (candidatePassword) => {
+UserSchema.methods.comparePassword = async function (candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);
-}
+};
+
 
 export const User = mongoose.model("User", UserSchema);

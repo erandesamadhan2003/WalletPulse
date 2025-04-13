@@ -6,8 +6,8 @@ const generateToken = (user) => {
 };
 
 export const registerUser = async (req, res) => {
-    const { fullname, email, password, profileImageUrl } = req.body;
-
+    // const { fullname, email, password } = req.body;
+    console.log(fullname, email, password);
     try {
         const exitingUser = await User.findOne({ email });
         if (exitingUser) {
@@ -21,14 +21,14 @@ export const registerUser = async (req, res) => {
             fullname,
             email,
             password,
-            profileImageUrl
         })
-
+        
         const token = generateToken(user);
 
         res.status(201).json({
             success: true,
             token,
+            user,
             message: "User register Successfully"
         })
     } catch (err) {
@@ -44,9 +44,10 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     const {email, password} = req.body;
 
+    
     try {
         const user = await User.findOne({email});
-        if(!user || !(await User.comparePassword(password))) {
+        if(!user || !(await user.comparePassword(password))) {
             return res.statur(400).json({
                 success: false,
                 message: "Invalid Credentials"
@@ -57,6 +58,7 @@ export const loginUser = async (req, res) => {
 
         res.status(201).json({
             success: true,
+            user,
             token,
             message: "User LoggedIn successfully"
         })
