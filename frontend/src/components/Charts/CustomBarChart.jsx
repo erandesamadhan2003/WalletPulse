@@ -20,6 +20,7 @@ const CustomTooltip = ({active, payload}) => {
         return null;
     }
 }
+
 export const CustomBarChart = ({ data }) => {
     return (
         <div className="bg-white mt-6">
