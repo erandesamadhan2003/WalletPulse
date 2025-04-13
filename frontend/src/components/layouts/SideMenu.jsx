@@ -12,14 +12,18 @@ export const SideMenu = ({ activeMenu }) => {
         clearUser();
         navigate('/login')
     }
-    const handleClick = (route) => {
+    const handleClick = (nav) => {
+        const route = nav.toLowerCase(); 
+        
         if (route === 'logout') {
-            handleLogout();
+            handleLogout(); 
             return;
         }
-
-        navigate(route);
+    
+        navigate(`/${route}`);  
     }
+
+
 
     return (
         <div className="w-64 h-screen bg-white border-r border-gray-200/50 sticky top-[61px] z-20">
@@ -41,6 +45,7 @@ export const SideMenu = ({ activeMenu }) => {
                     className={`w-full flex items-center gap-4 text-[15px] ${
                         activeMenu == item.label ? "text-white bg-purple-700 " : ""
                     } py-3 px-6 rounded-lg mb-3`}
+                    onClick={()=>handleClick(item.label)}
                 >
                     <item.icon className="text-xl" />
                     {item.label}

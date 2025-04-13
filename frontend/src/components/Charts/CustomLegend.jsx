@@ -1,5 +1,4 @@
 export const CustomLegend = ({ payload }) => {
-    console.log("PayLoad: ", payload);
     return (
         <div className="flex flex-wrap justify-between gap-2 mt-4">
             {payload.map((entry, index) => (
