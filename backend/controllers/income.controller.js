@@ -6,7 +6,6 @@ export const addIncome = async(req, res) => {
 
     try {
         const {icon, source, amount, date} = req.body;
-
         const newIncome = new Income({
             userId, icon, source, amount, date:new Date(date)
         });

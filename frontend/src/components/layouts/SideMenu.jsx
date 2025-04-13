@@ -23,7 +23,7 @@ export const SideMenu = ({ activeMenu }) => {
 
     return (
         <div className="w-64 h-screen bg-white border-r border-gray-200/50 sticky top-[61px] z-20">
-            <div className="flex flex-col items-center justify-center gap-3 mt-3 mb-7">
+            <div className="flex flex-col items-center justify-center gap-3 mb-7">
 
                 <img
                     src="https://i.pinimg.com/736x/e0/99/6a/e0996abf2cc49d103bd7c5b8c6feed8d.jpg"

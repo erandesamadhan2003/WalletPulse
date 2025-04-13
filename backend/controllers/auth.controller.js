@@ -6,8 +6,7 @@ const generateToken = (user) => {
 };
 
 export const registerUser = async (req, res) => {
-    // const { fullname, email, password } = req.body;
-    console.log(fullname, email, password);
+    const { fullname, email, password } = req.body;
     try {
         const exitingUser = await User.findOne({ email });
         if (exitingUser) {

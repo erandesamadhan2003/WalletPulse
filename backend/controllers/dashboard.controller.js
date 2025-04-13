@@ -13,14 +13,12 @@ export const getDashboardData = async (req, res) => {
             { $group: { _id: null, total: { $sum: "$amount" } } }
         ]);
 
-        console.log("totalIncome: ", { totalIncome, userId: isValidObjectId(userId) });
 
         const totalExpense = await Expense.aggregate([
             { $match: { userId: userObjectId } },
             { $group: { _id: null, total: { $sum: "$amount" } } }
         ]);
 
-        console.log("totalExpense: ", { totalExpense, userId: isValidObjectId(userId) });
 
         // get Income Transaction in the last 60 days
         const last60DaysIncomeTransactions = await Income.find({
@@ -69,7 +67,7 @@ export const getDashboardData = async (req, res) => {
                 total: ExpenseLast30days,
                 transaction: last30DaysExpenseTransactions
             },
-            last30DaysIncome: {
+            last60DaysIncome: {
                 total: incomeLast60days,
                 transaction: last60DaysIncomeTransactions
             },
