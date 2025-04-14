@@ -8,6 +8,7 @@ import { ExpenseList } from '../../components/Expense/ExpenseList';
 import { Modal } from '../../components/Modal';
 import { DeleteAlert } from '../../components/DeleteAlert';
 import { AddExpenseForm } from '../../components/Expense/AddExpenseForm';
+import { AddBudgetForm } from '../../components/Expense/AddBudgetForm';
 
 export const Expense = () => {
   const [expenseData, setExpenseData] = useState([]);
@@ -17,6 +18,8 @@ export const Expense = () => {
     data: null,
   });
   const [openAddExpenseModal, setOpenAddExpenseModal] = useState(false);
+  const [openAddBudgetModal, setOpenAddBudgetModal] = useState(false);
+
 
   const fetchExpenseDetails = async () => {
     if (loading) return;
@@ -45,7 +48,7 @@ export const Expense = () => {
     }
 
     if (!amount || isNaN(amount) || Number(amount) <= 0) {
-      toast.error("Amount Should be valid number greater tha 0");
+      toast.error("Amount Should be valid number greater than 0");
       return;
     }
 
@@ -59,6 +62,40 @@ export const Expense = () => {
       fetchExpenseDetails();
     } catch (error) {
       console.error("Error adding Expense:", error.response?.data?.message || error.message)
+    }
+  };
+
+  const handleSetBudget = async (budget) => {
+    const { amount, startDate, endDate } = budget;
+  
+    if (!amount || !startDate || !endDate) {
+      toast.error("All Field are required");
+      return;
+    }
+  
+    if (!amount || isNaN(amount) || Number(amount) <= 0) {
+      toast.error("Amount should be a valid number greater than 0");
+      return;
+    }
+  
+    if (new Date(startDate) >= new Date(endDate)) {
+      toast.error("Start date must be before end date");
+      return;
+    }
+  
+    try {
+      await axiosInstance.post(API_PATHS.EXPENSE.ADD_BUDGET, {
+        totalBudget: amount,
+        startDate,
+        endDate,
+      });
+  
+      setOpenAddExpenseModal(false);
+      toast.success("Budget Added Successfully");
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "Error in adding Budget";
+      toast.error(errorMessage); // Show backend error message (like "Only 3 budgets are allowed")
+      console.error("Error adding Budget:", errorMessage);
     }
   };
 
@@ -103,6 +140,7 @@ export const Expense = () => {
             <ExpenseOverView
               transactions={expenseData}
               onExpenseIncome={() => setOpenAddExpenseModal(true)}
+              onAddBudget={() => setOpenAddBudgetModal(true)}
             />
           </div>
           <ExpenseList
@@ -119,6 +157,14 @@ export const Expense = () => {
           title="Add Expense"
         >
           <AddExpenseForm onAddExpense={handleAddExpense} />
+        </Modal>
+
+        <Modal
+          isOpen={openAddBudgetModal}
+          onClose={() => setOpenAddBudgetModal(false)}
+          title="Add Budget"
+        >
+          <AddBudgetForm onAddBudget={handleSetBudget} />
         </Modal>
 
         <Modal

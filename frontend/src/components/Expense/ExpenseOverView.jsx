@@ -3,7 +3,7 @@ import { prepareExpenseLineCharData } from "../../utils/helper";
 import { LuPlus } from "react-icons/lu";
 import { CustomLineChart } from "../Charts/CustomLineChart";
 
-export const ExpenseOverView = ({ transactions, onExpenseIncome }) => {
+export const ExpenseOverView = ({ transactions, onExpenseIncome, onAddBudget }) => {
     const [chartData, setChartData] = useState([]);
     useEffect(() => {
         const result = prepareExpenseLineCharData(transactions.expense);
@@ -21,12 +21,18 @@ export const ExpenseOverView = ({ transactions, onExpenseIncome }) => {
                         Track your spending over time and gain insights your money goes
                     </p>
                 </div>
-
-                <button className="add-btn"
-                    onClick={onExpenseIncome}
-                >
-                    <LuPlus className="" /> Add Expense
-                </button>
+                <div className="flex gap-3">
+                    <button className="add-btn"
+                        onClick={onAddBudget}
+                    >
+                        <LuPlus className="" /> Add Budget
+                    </button>
+                    <button className="add-btn"
+                        onClick={onExpenseIncome}
+                    >
+                        <LuPlus className="" /> Add Expense
+                    </button>
+                </div>
             </div>
 
             <div className="mt-10">
