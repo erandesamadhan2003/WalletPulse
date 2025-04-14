@@ -90,11 +90,11 @@ export const Expense = () => {
         endDate,
       });
   
-      setOpenAddExpenseModal(false);
+      setOpenAddBudgetModal(false);
       toast.success("Budget Added Successfully");
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Error in adding Budget";
-      toast.error(errorMessage); // Show backend error message (like "Only 3 budgets are allowed")
+      toast.error(errorMessage); 
       console.error("Error adding Budget:", errorMessage);
     }
   };
