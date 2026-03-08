@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: walletpulse-backend
+  labels:
+    app: walletpulse-backend
+spec: 
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: walletpulse-backend
+
+  template: 
+    metadata: 
+      labels: 
+        app: walletpulse-backend
+
+    spec: 
+      containers: 
+      - name: backend
+        image: erandesamadhan2003/walletpulse-backend
+        ports: 
+        - containerPort: 3000
+     
+        env: 
+        - name: PORT 
+          value: "3000"
+        
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef: 
+              name: walletpulse-secret
+              key: MONGO_URI
+
+        - name: JWT_KEY
+          valueFrom: 
+            secretKeyRef:
+              name: walletpulse-secret
+              key: JWT_KEY
+
+      resources: 
+
+        requests: 
+          cpu: "200m"
+          memory: "256Mi"
+
+        limits: 
+          cpu: "500m"
+          memory: "512Mi"
+
