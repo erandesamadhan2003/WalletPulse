@@ -8,7 +8,7 @@ const uri = process.env.MONGO_URI;
 const connectDB = async () => {
   try {
     await mongoose.connect(uri, {
-      dbName: 'WalletPulse',
+      dbName: 'walletPulse',
     });
 
     console.log("MongoDB connected Successfully");
