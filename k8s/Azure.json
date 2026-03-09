@@ -1,0 +1,12 @@
+{
+    "ResourceGroup": {
+        "name": "walletpulse-rg",
+        "location": "centralindia"
+    },
+    "AzureContainerRegistry": {
+        "resource-group": "walletpulse-rg",
+        "name": "walletpulseacr",
+        "sku": "Basic",
+        "admin-enabled": true
+    }
+}

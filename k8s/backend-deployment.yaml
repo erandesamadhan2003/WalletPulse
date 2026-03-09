@@ -18,7 +18,7 @@ spec:
     spec: 
       containers: 
       - name: backend
-        image: erandesamadhan2003/walletpulse-backend
+        image: walletpulsecr.azurecr.io/walletpulse-backend:v1
         ports: 
         - containerPort: 3000
      
