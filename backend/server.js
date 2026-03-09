@@ -19,6 +19,12 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use('/', {
+    return: (req, res) => {
+        res.send('Welcome to the Expense Tracker API');
+    }
+})
+
 // Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/income', incomeRoutes);
