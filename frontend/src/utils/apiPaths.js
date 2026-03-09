@@ -1,26 +1,26 @@
-export const BASE_URL = "http://walletpulse-backend-service:3000";
+export const BASE_URL = "/api";
 
 export const API_PATHS = {
   AUTH: {
-    LOGIN: "/api/v1/auth/login",
-    REGISTER: "/api/v1/auth/register",
-    GET_USER_INFO: "/api/v1/auth/getUser",
+    LOGIN: "/v1/auth/login",
+    REGISTER: "/v1/auth/register",
+    GET_USER_INFO: "/v1/auth/getUser",
   },
   DASHBOARD: {
-    GET_DATA: "/api/v1/dashboard",
+    GET_DATA: "/v1/dashboard",
   },
   INCOME: {
-    ADD_INCOME: "/api/v1/income/add",
-    GET_ALL_INCOME: "/api/v1/income/get",
-    DELETE_INCOME: (incomeId) => `/api/v1/income/${incomeId}`,
-    DOWNLOAD_INCOME: `/api/v1/income/downloadedexcel`,
+    ADD_INCOME: "/v1/income/add",
+    GET_ALL_INCOME: "/v1/income/get",
+    DELETE_INCOME: (incomeId) => `/v1/income/${incomeId}`,
+    DOWNLOAD_INCOME: `/v1/income/downloadedexcel`,
   },
   EXPENSE: {
-    ADD_EXPENSE: "/api/v1/expense/add",
-    GET_ALL_EXPENSE: "/api/v1/expense/get",
-    DELETE_EXPENSE: (expenseId) => `/api/v1/expense/delete/${expenseId}`,
-    DOWNLOAD_EXPENSE: `/api/v1/expense/downloadedexcel`,
-    ADD_BUDGET: `/api/v1/expense/setbudget`,
-    DELETE_BUDGET:(budgetId)=>`/api/v1/expense/budget/${budgetId}`
+    ADD_EXPENSE: "/v1/expense/add",
+    GET_ALL_EXPENSE: "/v1/expense/get",
+    DELETE_EXPENSE: (expenseId) => `/v1/expense/delete/${expenseId}`,
+    DOWNLOAD_EXPENSE: `/v1/expense/downloadedexcel`,
+    ADD_BUDGET: `/v1/expense/setbudget`,
+    DELETE_BUDGET: (budgetId) => `/v1/expense/budget/${budgetId}`
   },
 };
