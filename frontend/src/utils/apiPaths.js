@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "http://walletpulse-backend-service:3000";
 
 export const API_PATHS = {
   AUTH: {
