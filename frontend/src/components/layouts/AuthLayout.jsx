@@ -34,7 +34,7 @@ export const AuthLayout = ({ children }) => {
                             className='text-black my-auto ml-3 bg-purple-700 p-2 w-full h-auto rounded-full'
                         />}
                         label="Track Your Income and Expenses"
-                        value="430,000"
+                        value="420,000"
                         color="bg-primary"
                     />
 
