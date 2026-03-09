@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: walletpulse-ingress
 spec:
+  ingressClassName: nginx
   rules:
-  - host: walletpulse.local
-    http:
+  - http:
       paths:
 
       - path: /api
