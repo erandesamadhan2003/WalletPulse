@@ -33,7 +33,7 @@ export const AuthLayout = ({ children }) => {
                         icon={<LuTrendingUpDown 
                             className='text-black my-auto ml-3 bg-purple-700 p-2 w-full h-auto rounded-full'
                         />}
-                        label="Hello Yash, Your Current Balance is"
+                        label="Track Your Income and Expenses"
                         value="420,000"
                         color="bg-primary"
                     />
