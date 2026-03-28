@@ -1,4 +1,4 @@
-export const BASE_URL = "/api";
+export const BASE_URL = "http://localhost:3000/api";
 
 export const API_PATHS = {
   AUTH: {
@@ -22,5 +22,11 @@ export const API_PATHS = {
     DOWNLOAD_EXPENSE: `/v1/expense/downloadedexcel`,
     ADD_BUDGET: `/v1/expense/setbudget`,
     DELETE_BUDGET: (budgetId) => `/v1/expense/budget/${budgetId}`
+  },
+  AI: {
+    GET_INSIGHTS: "/v1/ai/insights",
+    GET_PREDICTION: "/v1/ai/prediction",
+    GET_BUDGET: "/v1/ai/budget",
+    GET_REPORT: "/v1/ai/report",
   },
 };

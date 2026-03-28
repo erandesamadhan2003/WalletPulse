@@ -6,6 +6,7 @@ import { authRoutes } from './routes/auth.routes.js';
 import { incomeRoutes } from './routes/income.routes.js';
 import { expenseRoutes } from './routes/expense.routes.js';
 import { dashboardRoutes } from './routes/dashboard.routes.js';
+import { aiRoutes } from './routes/ai.routes.js';
 
 dotenv.config();
 connectDB();
@@ -14,8 +15,8 @@ const app = express();
 
 app.use(cors({
     origin: process.env.CLIENT_URL || "*",
-    methods: ['GET','POST','PUT','DELETE'],
-    allowedHeaders: ['Content-Type','Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 
@@ -28,6 +29,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/income', incomeRoutes);
 app.use('/api/v1/expense', expenseRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
+app.use('/api/v1/ai', aiRoutes);
 
 // Static folder for uploads
 
